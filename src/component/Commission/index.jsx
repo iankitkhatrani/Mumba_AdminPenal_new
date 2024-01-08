@@ -5,9 +5,20 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 function commissionInfo() {
  
   const [selectedcom, setSelectedcom] = useState("");
+  const [agentselectedcom, setAgentSelectedcom] = useState("");
+  const [shopselectedcom, setShopSelectedcom] = useState("");
 
-  const handleChange = (event) => {
+
+  const handleChangeadmin = (event) => {
     setSelectedcom(event.target.value);
+  };
+
+  const handleChangeagent = (event) => {
+    setAgentSelectedcom(event.target.value);
+  };
+
+  const handleChangeshop = (event) => {
+    setShopSelectedcom(event.target.value);
   };
 
   const context = useContext(offerContext)
@@ -16,8 +27,13 @@ function commissionInfo() {
   useEffect( () => {
     const submitdata = async () => {
       
+      let data = await GetGameCom()
+      console.log("data :::::::::::::::::::",data)
 
-      setSelectedcom(await GetGameCom())
+      setSelectedcom(data.admincommission)
+      setAgentSelectedcom(data.agentcommission)
+      setShopSelectedcom(data.shopcommission)
+
       
   }
   submitdata()
@@ -26,7 +42,10 @@ function commissionInfo() {
   const handleSubmit = async () => {
    let res = await  GameComSet({
         "game":"SORAT",
-        "gamecom":selectedcom
+        "selectedcom":selectedcom,
+        "agentselectedcom":agentselectedcom,
+        "shopselectedcom":shopselectedcom,
+
     })
     console.log("REs :::::::::::::::::::::",res)
     if(res.falgs == true){
@@ -43,7 +62,7 @@ function commissionInfo() {
             <div className="flex items-center space-x-[7px]">
               <div className="icon">
                 <span>
-                <label style={{"color":"white"}} htmlFor="noOneWillWin">Commission</label>
+                <label style={{"color":"white"}} htmlFor="noOneWillWin">Admin Commission :</label>
                 </span>
               </div>
               <span className="text-lg font-semibold text-bgray-900 dark:text-white">
@@ -55,8 +74,8 @@ function commissionInfo() {
             placeholder="Please Insert Name"
             name="name"
             value={selectedcom}
-            className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
-            onChange={handleChange}
+            className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14  w-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+            onChange={handleChangeadmin}
             />
 
               </span>
@@ -64,8 +83,62 @@ function commissionInfo() {
           </div>
         </div>
 
-        <div className="rounded-lg  p-5 ">  
+
+
+        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
+          <div className="mb-5 flex items-center justify-between">
+            <div className="flex items-center space-x-[7px]">
+              <div className="icon">
+                <span>
+                <label style={{"color":"white"}} htmlFor="noOneWillWin">Agent Commission :</label>
+                </span>
+              </div>
+              <span className="text-lg font-semibold text-bgray-900 dark:text-white">
+          
+
+            <input
+            type="text"
+            id="name"
+            placeholder="Please Insert Name"
+            name="name"
+            value={agentselectedcom}
+            className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14  w-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+            onChange={handleChangeagent}
+            />
+
+              </span>
+            </div>
+          </div>
         </div>
+
+
+        <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
+          <div className="mb-5 flex items-center justify-between">
+            <div className="flex items-center space-x-[7px]">
+              <div className="icon">
+                <span>
+                <label style={{"color":"white"}} htmlFor="noOneWillWin">Shop Commission :</label>
+                </span>
+              </div>
+              <span className="text-lg font-semibold text-bgray-900 dark:text-white">
+          
+
+            <input
+            type="text"
+            id="name"
+            placeholder="Please Insert Name"
+            name="name"
+            value={shopselectedcom}
+            className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14  w-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+            onChange={handleChangeshop}
+            />
+
+              </span>
+            </div>
+          </div>
+        </div>
+
+
 
         <div className="rounded-lg  p-5">
 

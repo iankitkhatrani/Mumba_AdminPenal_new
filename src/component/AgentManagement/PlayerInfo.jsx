@@ -1,5 +1,7 @@
 import ProtoTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
+import ShopImg from "../../assets/images/icon/shop.png";
+
 import offerContext from '../../context/offerContext';
 import React, { useState, useContext, useEffect } from 'react';
 
@@ -18,6 +20,10 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
     await AgentDelete(UserId)
 
     navigate('/agentmanagement');
+  }
+
+  const NavigateTotalShop = async (UserId) =>{
+    navigate('/shopmanagement', { state:{ UserId} });
   }
 
   return (
@@ -88,6 +94,20 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
             <img style={{ "width": "15px", "height": "15px", "margin": "10px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSewqWoGi9-fXmd6_SKqNkg6-kmo7VctpXAhgBiKaliSA&s" />
 
           </button>
+
+          <button styles={{
+            "margin": "1px",
+            "background-color": "white",
+            "color": "white",
+            "border": "none",
+            "padding": "5px 10px",
+            "cursor": "pointer",
+            "border-radius": "4px"
+          }} onClick={() => NavigateTotalShop(UserId) } >
+            <img style={{ "width": "15px", "height": "15px", "margin": "10px" }} src={ShopImg} />
+
+          </button>
+
         </div>
       </td>
     </tr>

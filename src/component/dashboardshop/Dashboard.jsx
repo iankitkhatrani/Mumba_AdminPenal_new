@@ -41,6 +41,7 @@ function Dashboard() {
           amount={totalUser}
           groth="+ 3.5%"
           id="totalEarn"
+          link="/transaction"
         />
       
       </div>

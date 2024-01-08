@@ -32,7 +32,7 @@ function UserTab({ }) {
 
   useEffect( () => {
     const submitdata = async () => {
-      setJsonData(await latatestUser())
+      setJsonData(await latatestUser("Admin"))
     }
   submitdata()
   },[]);

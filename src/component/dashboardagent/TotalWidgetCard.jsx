@@ -2,6 +2,8 @@ import ProtoTypes from "prop-types";
 import LineChart from "../chart/LineChart";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const createGradient = (ctx) => {
   const gradient = ctx.createLinearGradient(0, 0, 0, 450);
@@ -10,8 +12,13 @@ const createGradient = (ctx) => {
   return gradient;
 };
 
-function TotalWidgetCard({ title, amount, groth, memberImg, totalEarnImg,logo }) {
+function TotalWidgetCard({ title, amount, groth, memberImg, totalEarnImg,logo,link }) {
   const chartRef = useRef(null);
+
+  const navigate = useNavigate();
+  const navigateToUserRegister = (link) => {
+    navigate(link);
+  };
 
   useEffect(() => {
     // // Get canvas context and create gradient
@@ -99,6 +106,8 @@ function TotalWidgetCard({ title, amount, groth, memberImg, totalEarnImg,logo })
     ],
   };
   return (
+    <a 
+       onClick={() => navigateToUserRegister(link)} >
     <div className="rounded-lg bg-white p-5 dark:bg-darkblack-600">
       <div className="mb-5 flex items-center justify-between">
         <div className="flex items-center space-x-[7px]">
@@ -153,6 +162,7 @@ function TotalWidgetCard({ title, amount, groth, memberImg, totalEarnImg,logo })
         </div>
       </div>
     </div>
+    </a>
   );
 }
 

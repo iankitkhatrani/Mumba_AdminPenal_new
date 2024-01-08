@@ -3,6 +3,8 @@ import CustomerInfo from "./UserInfo";
 import users from "../../data/user";
 import offerContext from '../../context/offerContext'
 import React,{useContext,useEffect,useState,useRef} from 'react';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 function UserTab({ }) {
 
@@ -32,7 +34,14 @@ function UserTab({ }) {
 
   useEffect( () => {
     const submitdata = async () => {
-      setJsonData(await latatestUser())
+      
+      if(cookies.get('logintype')  == "Admin"){
+        setJsonData(await latatestUser(cookies.get('logintype')))
+      }else{
+        setJsonData(await latatestUser(cookies.get('LoginUserId')))
+      }
+
+
     }
   submitdata()
   },[]);

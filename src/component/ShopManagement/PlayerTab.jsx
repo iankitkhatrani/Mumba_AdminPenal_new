@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import ProtoTypes from "prop-types";
 import CustomerInfo from "./PlayerInfo";
 import offerContext from '../../context/offerContext';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,useLocation} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -26,14 +26,21 @@ function PlayerTab({ }) {
     navigate('/shopadd');
   };
 
+  const location = useLocation();
+  //console.log("location ", location.state)
+  const AgentInfo = location.state;
+
+  console.log("AgentInfo ",AgentInfo)
+
   let [userData, setUserData] = useState([]);
   const context = useContext(offerContext)
   const { ShopList } = context
 
   useEffect(() => {
     const submitdata = async () => {
-
-      if(cookies.get('logintype')  == "Admin"){
+      if(AgentInfo != undefined && AgentInfo.UserId != undefined){
+        setUserData(await ShopList(AgentInfo.UserId))
+      }else if(cookies.get('logintype')  == "Admin"){
         setUserData(await ShopList(cookies.get('logintype')))
       }else{
         setUserData(await ShopList(cookies.get('LoginUserId')))

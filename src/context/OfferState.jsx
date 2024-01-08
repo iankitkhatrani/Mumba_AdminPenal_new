@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-const host = "http://192.168.0.203:3838"//"http://13.50.221.113:2828";//
+const host = "http://13.50.221.113:4949";//"http://192.168.0.203:3838"//
 //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ5Y2NlM2JhNDA4YTJlMjg3ZjJlYzUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQHNpc3VnYW16LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHhZZzVMUlNRRWxiNENOZnVocjdncmUyUjNMOUQ5eDhaWmc0c0QxSW9uY1N6ZWFTSHgzMTIuIiwiY3JlYXRlZEF0IjoiMjAyMy0xMS0wN1QwNTozNjozNS42NjBaIiwibW9kaWZpZWRBdCI6IjIwMjMtMTEtMDdUMDU6MzY6MzUuNjYwWiIsImlhdCI6MTY5OTMzNTQxMywiZXhwIjoxNjk5OTQwMjEzfQ.NrLsWSnyD09P3h30rsng_R3bygn3TsKl8nXyD7qom4c";
 
 const OfferState = (props) => {
@@ -53,11 +53,13 @@ const OfferState = (props) => {
         }
     }
 
-    const latatestUser = async (id) => {
+    const latatestUser = async (uid) => {
         try {
 
             console.log("${host}/admin/latatestUser", `${host}/admin/dashboard/latatestUser`)
-            const response = await fetch(`${host}/admin/dashboard/latatestUser`, {
+            console.log("latatestUser ::::::::::::::::::::",uid)
+
+            const response = await fetch(`${host}/admin/dashboard/latatestUser?Id=` + uid, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -85,6 +87,77 @@ const OfferState = (props) => {
             console.log("e :", e)
         }
     }
+
+    const latatestShop = async (uid) => {
+        try {
+
+            console.log("${host}/admin/latatestShop", `${host}/admin/dashboard/latatestShop`)
+            console.log("latatestShop ::::::::::::::::::::",uid)
+
+            const response = await fetch(`${host}/admin/dashboard/latatestShop?Id=` + uid, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')//token
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :Recent Player  latatestShop :::...", json)
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                console.log("dffffffffffffffffffffffffffffffffffffffffffffffffff", cookies.get('token'))
+                console.log("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 75")
+
+                LogoutClick()
+
+                console.log("dffffffffffffffffffffffffffffffffffffffffffffffffff", cookies.get('token'))
+
+                return []
+            } else {
+                return await json.RecentUser
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const latatestAgent = async () => {
+        try {
+
+            console.log("${host}/admin/latatestAgent", `${host}/admin/dashboard/latatestAgent`)
+            console.log("latatestAgent ::::::::::::::::::::")
+
+            const response = await fetch(`${host}/admin/dashboard/latatestAgent`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')//token
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :Recent Player  latatestAgent :::...", json)
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                console.log("dffffffffffffffffffffffffffffffffffffffffffffffffff", cookies.get('token'))
+                console.log("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 75")
+
+                LogoutClick()
+
+                console.log("dffffffffffffffffffffffffffffffffffffffffffffffffff", cookies.get('token'))
+
+                return []
+            } else {
+                return await json.RecentUser
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+    
 
     // ========= User Details =================
 
@@ -1008,7 +1081,7 @@ const OfferState = (props) => {
 
                 return json
             } else {
-                return await json.commission
+                return await json
             }
 
 
@@ -2243,7 +2316,7 @@ const OfferState = (props) => {
     return (
         <offerContext.Provider value={{
             host,
-            adminname, adminEmail, dashboardData, latatestUser, PlayerList, PlayerData,
+            adminname, adminEmail, dashboardData, latatestUser,latatestShop,latatestAgent ,PlayerList, PlayerData,
             PlayerAdd, PlayerDelete, GameLogicSet, GetGameLogic, GetBlackandWhiteHistoryData, aviatorHistoryData, GetCompleteWithdrawalData,
             GetCompleteDespositeData, GetRegisterReferralBonusData, GetMyReferralData,
             SocailURLsList, SocailURLsAdd, DeleteSocailURLs,

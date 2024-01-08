@@ -43,6 +43,7 @@ function Dashboard() {
           groth="+ 3.5%"
           id="totalEarn"
           logo=""
+          link="/shopmanagement"
         />
         
       </div>

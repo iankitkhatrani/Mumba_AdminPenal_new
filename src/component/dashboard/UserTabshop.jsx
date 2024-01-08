@@ -1,10 +1,8 @@
 import ProtoTypes from "prop-types";
-import CustomerInfo from "./UserInfo";
+import CustomerInfo from "./UserInfoshop";
 import users from "../../data/user";
 import offerContext from '../../context/offerContext'
 import React,{useContext,useEffect,useState,useRef} from 'react';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 function UserTab({ }) {
 
@@ -36,7 +34,7 @@ function UserTab({ }) {
     const submitdata = async () => {
       //setJsonData(await latatestUser())
 
-      setJsonData(await latatestShop(cookies.get('LoginUserId')))
+      setJsonData(await latatestShop("Admin"))
 
     }
   submitdata()

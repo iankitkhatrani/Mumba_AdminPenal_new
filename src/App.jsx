@@ -29,11 +29,11 @@ function App() {
     console.log("Location ",window.location)
     console.log("window.location.href ",window.location.href)
 
-    var url = window.location.href.split("5173")
+    var url = window.location.href.split("5175")
     console.log("URL ",url)
 
     if(url[1] != "/signin"){
-      window.location.href = "http://192.168.0.203:5173/signin" //'http://51.20.117.194:5173/signin';//
+      window.location.href = 'http://51.20.117.194:5175/signin';//"http://192.168.0.203:5175/signin" //
       return false
     }
     //return (<Router><Login/></Router>)
