@@ -46,6 +46,6 @@ export default defineConfig({
   plugins: [react(), VitePWA(pwaConfig)],
   server:{
     host:true,
-    port:5174
+    port:5175
   }
 });
