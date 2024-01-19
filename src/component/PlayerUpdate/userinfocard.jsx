@@ -2,12 +2,16 @@ import GreenBtn from "../button/AddMony";
 
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect,useRef } from 'react';
 import offerContext from '../../context/offerContext';
+
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+
+
+
 function userInfo() {
 
 
@@ -20,6 +24,7 @@ function userInfo() {
   const context = useContext(offerContext)
   const { AddMoney, DeductMoney, host } = context
 
+ 
 
   const navigate = useNavigate();
   const navigateToContacts = () => {
@@ -41,6 +46,7 @@ function userInfo() {
     uniqueId: Botinfo.uniqueId,
 
   })
+
 
   useEffect(() => {
 
@@ -98,7 +104,7 @@ function userInfo() {
     console.log("amount ", amount)
 
     let res = await DeductMoney({ money: amount, type: "Deduct", userId: Botinfo.UserId })
-
+    
     if (res.status == "ok") {
 
       alert("Successfully Deduct...!!")
@@ -109,8 +115,11 @@ function userInfo() {
     setAmount(0)
 
   }
+  
+ 
 
 
+  
   return (
     <>
       <div className="mb-6 w-full rounded-lg bg-white px-[42px] py-5 dark:border dark:border-darkblack-400 dark:bg-darkblack-600 lg:mb-0 lg:w-1/2 2xl:mb-6 2xl:w-full">
@@ -212,7 +221,11 @@ function userInfo() {
 
           <button aria-label="none" onClick={SaveChangeDeduct}
           className="mt-7 bg-red-300 dark:text-bgray-900 border-2 border-transparent text-white rounded-lg px-4 py-3 font-semibold text-sm">Deduct Money</button>
-      
+        <br></br>
+
+        
+
+         
         </div>
       </div>
     </>

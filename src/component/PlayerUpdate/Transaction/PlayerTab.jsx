@@ -36,6 +36,13 @@ function PlayerTab({ UserId, gameName }) {
       // <HistoryTable gameName="Withdrawal"/>
       // <HistoryTable gameName="Deposit"/>
       // <HistoryTable gameName="reffrel"/>
+
+      // <HistoryTable gameName="Wheel Of Fortune"/>
+      // <HistoryTable gameName="Andar Bahar"/>
+      // <HistoryTable gameName="SORAT"/>
+      // <HistoryTable gameName="One To Twelve"/>
+
+
       console.log("gameName ",gameName)
       if (gameName == "Withdrawal") {
        

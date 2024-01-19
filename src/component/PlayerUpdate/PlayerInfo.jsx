@@ -1,6 +1,7 @@
 import ProtoTypes from "prop-types";
 
-function PlayerInfo({ datetime,UserName,MobileNo,roomid,amount,type,club}) {
+
+function PlayerInfo({ datetime,trnxTypeTxt,trnxAmount,previouschips,currentchips,previousWinner,currentWinner}) {
   return (
     <tr className="border-b border-bgray-300 dark:border-darkblack-400">
       
@@ -14,32 +15,32 @@ function PlayerInfo({ datetime,UserName,MobileNo,roomid,amount,type,club}) {
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {UserName}
+          {trnxTypeTxt}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {MobileNo}
+          {trnxAmount}
         </p>
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          {roomid}
+          {previouschips}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-        ₹{amount}
+        ₹{currentchips}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {type}
+          {previousWinner}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
-          {club}
+          {currentWinner}
         </p>
       </td>
       

@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-const host = "http://13.50.221.113:4949";//"http://192.168.0.203:3838"//
+const host = "http://13.50.221.113:4949";//"http://192.168.0.203:4949"//
 //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQ5Y2NlM2JhNDA4YTJlMjg3ZjJlYzUiLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQHNpc3VnYW16LmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHhZZzVMUlNRRWxiNENOZnVocjdncmUyUjNMOUQ5eDhaWmc0c0QxSW9uY1N6ZWFTSHgzMTIuIiwiY3JlYXRlZEF0IjoiMjAyMy0xMS0wN1QwNTozNjozNS42NjBaIiwibW9kaWZpZWRBdCI6IjIwMjMtMTEtMDdUMDU6MzY6MzUuNjYwWiIsImlhdCI6MTY5OTMzNTQxMywiZXhwIjoxNjk5OTQwMjEzfQ.NrLsWSnyD09P3h30rsng_R3bygn3TsKl8nXyD7qom4c";
 
 const OfferState = (props) => {
@@ -591,11 +591,75 @@ const OfferState = (props) => {
 
     //============================================================================
 
-    // History 
-    const GetBlackandWhiteHistoryData = async (userId) => {
+    // History  User 
+    const GetSpinnerHistoryData = async (userId) => {
         try {
             console.log("PlayerList :::::::", `${host}/admin/userhistory/UserData`, userId)
-            const response = await fetch(`${host}/admin/userhistory/BackandWhiteHistory?userId=` + userId, {
+            const response = await fetch(`${host}/admin/userhistory/GetSpinnerHistoryData?userId=` + userId, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :GetBlackandWhiteHistoryData :::...111111111111111", json.GameHistoryData)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json.GameHistoryData
+
+            }
+
+
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    // History 
+    const GetSoratHistoryData = async (userId) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/userhistory/GetSoratHistoryData`, userId)
+            const response = await fetch(`${host}/admin/userhistory/GetSoratHistoryData?userId=` + userId, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :GetSoratHistoryData :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return []
+            } else {
+                return await json.GameHistoryData
+            }
+
+
+
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const GetandarbaharHistoryData = async (userId) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/userhistory/GetandarbaharHistoryData`, userId)
+            const response = await fetch(`${host}/admin/userhistory/GetandarbaharHistoryData?userId=` + userId, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -612,7 +676,7 @@ const OfferState = (props) => {
 
                 return []
             } else {
-                return await json.BlackandWhiteData
+                return await json.GameHistoryData
             }
 
 
@@ -624,10 +688,10 @@ const OfferState = (props) => {
     }
 
     // History 
-    const aviatorHistoryData = async (userId) => {
+    const GetOneToTwelveHistoryData = async (userId) => {
         try {
-            console.log("PlayerList :::::::", `${host}/admin/userhistory/aviatorHistory`, userId)
-            const response = await fetch(`${host}/admin/userhistory/aviatorHistory?userId=` + userId, {
+            console.log("PlayerList :::::::", `${host}/admin/userhistory/GetOneToTwelveHistoryData`, userId)
+            const response = await fetch(`${host}/admin/userhistory/GetOneToTwelveHistoryData?userId=` + userId, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -637,14 +701,14 @@ const OfferState = (props) => {
             }).then(data => data.json())
 
             const json = response
-            console.log("data api from :aviatorHistoryData :::...", json)
+            console.log("data api from :GetOneToTwelveHistoryData :::...", json)
 
             if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
                 LogoutClick()
 
                 return []
             } else {
-                return await json.aviatorHistoryData
+                return await json.GameHistoryData
             }
 
 
@@ -654,6 +718,8 @@ const OfferState = (props) => {
             console.log("e :", e)
         }
     }
+   
+    //=================================================================================
 
     const GetCompleteWithdrawalData = async (userId) => {
         try {
@@ -811,6 +877,36 @@ const OfferState = (props) => {
 
             const json = response
             console.log("data api from :DeductMoney :::...", json)
+
+            if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
+                LogoutClick()
+
+                return {}
+            } else {
+                return await json
+            }
+
+        } catch (e) {
+            console.log("e :", e)
+        }
+    }
+
+    const getprintdataapi = async (userId) => {
+        try {
+            console.log("PlayerList :::::::", `${host}/admin/user/UserInfoPrint`)
+            // + userId
+            const response = await fetch(`${host}/admin/user/UserInfoPrint?userId=65967296eae703374096d4dd`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': cookies.get('token')
+                }
+            }).then(data => data.json())
+
+            const json = response
+            console.log("data api from :latatestUser :::...", json)
+
 
             if (json.message != undefined && (json.message == "jwt expired" || json.message == "Unauthorized access")) {
                 LogoutClick()
@@ -2317,7 +2413,7 @@ const OfferState = (props) => {
         <offerContext.Provider value={{
             host,
             adminname, adminEmail, dashboardData, latatestUser,latatestShop,latatestAgent ,PlayerList, PlayerData,
-            PlayerAdd, PlayerDelete, GameLogicSet, GetGameLogic, GetBlackandWhiteHistoryData, aviatorHistoryData, GetCompleteWithdrawalData,
+            PlayerAdd, PlayerDelete, GameLogicSet, GetGameLogic, GetCompleteWithdrawalData,
             GetCompleteDespositeData, GetRegisterReferralBonusData, GetMyReferralData,
             SocailURLsList, SocailURLsAdd, DeleteSocailURLs,
             CoinsList, CoinPackeAdd, DeleteCoinpack,
@@ -2327,13 +2423,14 @@ const OfferState = (props) => {
             SendPushnotification,
             BannerList, BannerAdd, DeleteBanner, UploadBanner,
             BotList, BotAdd, BotDelete, BotData, UploadProfile, BotUpdate,
-            AddMoney, DeductMoney, LogoutClick,
+            AddMoney, DeductMoney,getprintdataapi, LogoutClick,
             DepositeList, DepositeAccptedList, DepositeRejectedList, DepositeAdd, UploadScreenshort, DepositeDelete, DepositeData, DepositeUpdate,
             PayoutList, PayoutAccptedList, PayoutRejectedList, PayoutUpdate, UploadScreenshortPayout,
             AgentList,AgentAdd,AgentDelete,AgentData,AgentUpdate,
             ShopList,ShopAdd,ShopDelete,ShopData,ShopUpdate,
             SoratGameHistory,SpinGameHistory,AndarBaharGameHistory,WheelofFortuneGameHistory,BaraKaDumGameHistory,RouletteGameHistory,
-            GetGameCom,GameComSet 
+            GetGameCom,GameComSet,
+            GetSpinnerHistoryData,GetSoratHistoryData,GetandarbaharHistoryData,GetOneToTwelveHistoryData 
         }}>
             {props.children}
         </offerContext.Provider>)

@@ -22,11 +22,11 @@ function PlayerTab({ UserId, gameName }) {
   //------------------------------------------------------------------------------------------------------------
   const location = useLocation();
   const Botinfo = location.state;
-  console.log(" Botinfo.UserId ", Botinfo)
+  //console.log(" Botinfo.UserId ", Botinfo)
   let [gameHistoryData, setGameHistoryData] = useState([]);
 
   const context = useContext(offerContext)
-  const { GetBlackandWhiteHistoryData, aviatorHistoryData, GetCompleteWithdrawalData, GetCompleteDespositeData, GetRegisterReferralBonusData } = context
+  const { GetSpinnerHistoryData,GetSoratHistoryData,GetandarbaharHistoryData,GetOneToTwelveHistoryData} = context
 
 
   useEffect(() => {
@@ -37,16 +37,30 @@ function PlayerTab({ UserId, gameName }) {
       // <HistoryTable gameName="Withdrawal"/>
       // <HistoryTable gameName="Deposit"/>
       // <HistoryTable gameName="reffrel"/>
+
+      // <HistoryTable gameName="Wheel Of Fortune"/>
+      // <HistoryTable gameName="Andar Bahar"/>
+      // <HistoryTable gameName="SORAT"/>
+      // <HistoryTable gameName="One To Twelve"/>
+
+      
       console.log("gameName ",gameName)
-      if (gameName == "AviatorGame") {
+      if (gameName == "Wheel Of Fortune") {
        
-        setGameHistoryData(await aviatorHistoryData( Botinfo.UserId))
+        setGameHistoryData(await GetSpinnerHistoryData( Botinfo.UserId))
 
         console.log("gameHistoryData ",gameHistoryData)
 
-      } else if (gameName == "BlackandWhite") {
+      } 
+      else if (gameName == "Andar Bahar") {
 
-        setGameHistoryData(await GetBlackandWhiteHistoryData( Botinfo.UserId))
+        setGameHistoryData(await GetandarbaharHistoryData( Botinfo.UserId))
+      }else if (gameName == "SORAT") {
+
+        setGameHistoryData(await GetSoratHistoryData( Botinfo.UserId))
+      }else if (gameName == "One To Twelve") {
+
+        setGameHistoryData(await GetOneToTwelveHistoryData( Botinfo.UserId))
       }
       // else if(gameName == "Withdrawal"){
 
@@ -181,7 +195,7 @@ function PlayerTab({ UserId, gameName }) {
         <table className="w-full">
           <tbody>
             <tr className="border-b border-bgray-300 dark:border-darkblack-400">
-              
+
               <td className="inline-block w-[250px] px-6 py-5 lg:w-auto xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
@@ -230,7 +244,7 @@ function PlayerTab({ UserId, gameName }) {
               <td className="px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Name
+                    TypeOfAction
                   </span>
                   <span>
                     <svg
@@ -274,96 +288,6 @@ function PlayerTab({ UserId, gameName }) {
               </td>
               <td className="px-6 py-5 xl:px-0">
                 <div className="flex items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Mobile Number
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
-                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Room Id
-                  </span>
-                  <span>
-                    <svg
-                      width="14"
-                      height="15"
-                      viewBox="0 0 14 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M10.332 1.31567V13.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3.66602 13.3157V1.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
-                        stroke="#718096"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </td>
-              <td className="w-[165px] px-6 py-5 xl:px-0">
-                <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
                     Amount
                   </span>
@@ -410,7 +334,7 @@ function PlayerTab({ UserId, gameName }) {
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Type
+                  previouschips
                   </span>
                   <span>
                     <svg
@@ -455,7 +379,97 @@ function PlayerTab({ UserId, gameName }) {
               <td className="w-[165px] px-6 py-5 xl:px-0">
                 <div className="flex w-full items-center space-x-2.5">
                   <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
-                    Club
+                  currentchips
+                  </span>
+                  <span>
+                    <svg
+                      width="14"
+                      height="15"
+                      viewBox="0 0 14 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.332 1.31567V13.3157"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M3.66602 13.3157V1.31567"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  previousWinner
+                  </span>
+                  <span>
+                    <svg
+                      width="14"
+                      height="15"
+                      viewBox="0 0 14 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.332 1.31567V13.3157"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M5.66602 11.3157L3.66602 13.3157L1.66602 11.3157"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M3.66602 13.3157V1.31567"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M12.332 3.31567L10.332 1.31567L8.33203 3.31567"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </td>
+              <td className="w-[165px] px-6 py-5 xl:px-0">
+                <div className="flex w-full items-center space-x-2.5">
+                  <span className="text-base font-medium text-bgray-600 dark:text-bgray-50">
+                  currentWinner
                   </span>
                   <span>
                     <svg
@@ -504,26 +518,26 @@ function PlayerTab({ UserId, gameName }) {
                 ? index + 1 <= pageSize && (
                   <CustomerInfo
                     key={user._id}
-                    datetime={user.DateTime}
-                    UserName={user.Name}
-                    MobileNo={user.PhoneNumber}
-                    roomid={user.RoomId}
-                    amount={user.Amount}
-                    type={user.Type}
-                    club={user.game}
+                    datetime={user.DateandTime}
+                    trnxTypeTxt={user.trnxTypeTxt}
+                    trnxAmount={user.trnxAmount}
+                    previouschips={user.oppChips}
+                    currentchips={user.chips}
+                    previousWinner={user.oppWinningChips}
+                    currentWinner={user.winningChips}
 
                   />
                 )
                 : index < 3 && (
                   <CustomerInfo
                     key={user._id}
-                    datetime={user.DateTime}
-                    UserName={user.Name}
-                    MobileNo={user.PhoneNumber}
-                    roomid={user.RoomId}
-                    amount={user.Amount}
-                    type={user.Type}
-                    club={user.game}
+                    datetime={user.DateandTime}
+                    trnxTypeTxt={user.trnxTypeTxt}
+                    trnxAmount={user.trnxAmount}
+                    previouschips={user.oppChips}
+                    currentchips={user.chips}
+                    previousWinner={user.oppWinningChips}
+                    currentWinner={user.winningChips}
                   />
                 )
             )}
