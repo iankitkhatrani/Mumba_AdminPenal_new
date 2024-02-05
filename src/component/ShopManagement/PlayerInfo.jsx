@@ -4,6 +4,10 @@ import offerContext from '../../context/offerContext';
 import React, { useState, useContext, useEffect } from 'react';
 import PlayerImg from "../../assets/images/icon/player.png";
 
+
+import edit from "../../assets/images/edit.png";
+import trash from "../../assets/images/trash.png";
+
 function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, lastLoginDate,  status,email,uniqueId,password }) {
 
   const navigate = useNavigate();
@@ -78,7 +82,7 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
             "cursor": "pointer",
             "border-radius": "4px"
           }} onClick={() => navigateToContacts( UserId, UserName, MobileNo, location, area, createdAt, lastLoginDate,  status,email,uniqueId,password)} >
-            <img style={{ "width": "15px", "height": "15px", "margin": "10px" }} src="https://cdn3.iconfinder.com/data/icons/feather-5/24/edit-512.png" />
+          <img style={{"width": "30px","height": "30px","margin": "10px"}} src={edit} />
           </button>
 
           <button styles={{
@@ -90,8 +94,8 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
             "cursor": "pointer",
             "border-radius": "4px"
           }} onClick={() => NavigateDelete(UserId) } >
-            <img style={{ "width": "15px", "height": "15px", "margin": "10px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSewqWoGi9-fXmd6_SKqNkg6-kmo7VctpXAhgBiKaliSA&s" />
-
+          <img style={{"width": "30px","height": "30px","margin": "10px"}} src={trash} />
+           
           </button>
 
           <button styles={{
