@@ -83,7 +83,7 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
             "cursor": "pointer",
             "border-radius": "4px"
           }} onClick={() => navigateToContacts( UserId, UserName, MobileNo, location, area, createdAt, lastLoginDate,  status,email,uniqueId,password)} >
-          <img style={{"width": "30px","height": "30px","margin": "10px"}} src={edit} />
+          <img style={{"width": "30px","height": "30px","margin": "30px"}} src={edit} />
           </button>
 
           <button styles={{
@@ -95,7 +95,7 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
             "cursor": "pointer",
             "border-radius": "4px"
           }} onClick={() => NavigateDelete(UserId) } >
-          <img style={{"width": "30px","height": "30px","margin": "10px"}} src={trash} />
+          <img style={{"width": "30px","height": "30px","margin": "30px"}} src={trash} />
            
           </button>
 
@@ -108,7 +108,7 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
             "cursor": "pointer",
             "border-radius": "4px"
           }} onClick={() => NavigateTotalShop(UserId) } >
-            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={ShopImg} />
+            <img style={{ "width": "30px", "height": "30px", "margin": "30px" }} src={ShopImg} />
 
           </button>
 

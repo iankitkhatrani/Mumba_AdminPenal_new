@@ -67,7 +67,7 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"}} onClick={ () => navigateToContacts(UserId,img,UserName,GamePlay,MainWallet,Status) } >
-            <img style={{"width": "30px","height": "30px","margin": "10px"}} src={edit} />
+            <img style={{"width": "30px","height": "30px","margin": "30px"}} src={edit} />
           </button>
           <button styles={{"margin": "1px",
           "background-color": "white",
@@ -76,7 +76,7 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
           "padding": "5px 10px",
           "cursor": "pointer",
           "border-radius": "4px"}} onClick={ () => DeleteUser(UserId) } >
-          <img style={{"width": "30px","height": "30px","margin": "10px"}} src={trash} />
+          <img style={{"width": "30px","height": "30px","margin": "30px"}} src={trash} />
            
           </button>
         </div>
