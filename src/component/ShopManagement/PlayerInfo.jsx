@@ -107,7 +107,7 @@ function PlayerInfo({ UserId, UserName, MobileNo, location, area, createdAt, las
             "cursor": "pointer",
             "border-radius": "4px"
           }} onClick={() => NavigateTotalPlayer(UserId) } >
-            <img style={{ "width": "15px", "height": "15px", "margin": "10px" }} src={PlayerImg} />
+            <img style={{ "width": "30px", "height": "30px", "margin": "10px" }} src={PlayerImg} />
 
           </button>
 

@@ -63,7 +63,7 @@ import Commission from './pages/commission'
 
 
 
-
+import Chnagepwd from './pages/Chnagepwd'
 
 const router = createBrowserRouter([
   {
@@ -183,6 +183,10 @@ const router = createBrowserRouter([
       {
         path: "/bannerlist",
         element: <BannerList />,
+      },
+      {
+        path: "/security",
+        element: <Chnagepwd />,
       },
       {
         path: "/settings",
