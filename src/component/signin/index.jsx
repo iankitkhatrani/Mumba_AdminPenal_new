@@ -112,7 +112,7 @@ function LeftSide() {
         handleActive={setModalOpen}
       />
       <header>
-        <Link to="/" className="">
+        <Link to="/dashboard" className="">
           <img src={logoColor} className="block dark:hidden" alt="Logo" />
           <img src={logoWhite} className="hidden dark:block" alt="Logo" />
         </Link>
