@@ -4,7 +4,6 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 function Author({ showProfile }) {
-  
   return (
     <div
       onClick={() => showProfile("profile")}

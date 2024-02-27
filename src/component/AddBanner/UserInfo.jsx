@@ -3,7 +3,7 @@ import offerContext from '../../context/offerContext'
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-function CustomerInfo({ title, imageUrl, date, id }) {
+function CustomerInfo({ title, imageUrl, date, id,link }) {
 
   const context = useContext(offerContext)
   const { DeleteBanner,host } = context
@@ -42,6 +42,11 @@ function CustomerInfo({ title, imageUrl, date, id }) {
       <td className="px-6 py-5 xl:px-0">
         <p className="text-base font-medium text-bgray-900 dark:text-white">
           {date}
+        </p>
+      </td>
+      <td className="px-6 py-5 xl:px-0">
+        <p className="text-base font-medium text-bgray-900 dark:text-white">
+          {link}
         </p>
       </td>
       <td className="px-6 py-5 xl:px-0">

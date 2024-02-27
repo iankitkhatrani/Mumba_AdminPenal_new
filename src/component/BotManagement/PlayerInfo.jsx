@@ -50,7 +50,7 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
       </td>
       <td className="w-[165px] px-6 py-5 xl:px-0">
         <p className="text-base font-semibold text-bgray-900 dark:text-white">
-          ${MainWallet}
+        ₹{MainWallet}
         </p>
       </td>     
       <td className="w-[165px] px-6 py-5 xl:px-0">
@@ -67,7 +67,7 @@ function PlayerInfo({ UserId,img,UserName,GamePlay,MainWallet,Status}) {
             "padding": "5px 10px",
             "cursor": "pointer",
             "border-radius": "4px"}} onClick={ () => navigateToContacts(UserId,img,UserName,GamePlay,MainWallet,Status) } >
-            <img style={{"width": "30px","height": "30px","margin": "30px"}} src={edit} />
+            <img style={{"width": "30px","height": "30px","margin": "10px"}} src={edit} />
           </button>
           <button styles={{"margin": "1px",
           "background-color": "white",

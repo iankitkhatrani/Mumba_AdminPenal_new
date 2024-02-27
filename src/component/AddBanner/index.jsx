@@ -10,6 +10,7 @@ function addbanner() {
   const { BannerAdd,UploadBanner } = context
 
   const [newTitle, setNewTitle] = useState('');
+  const [newLink, setNewLink] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
 
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function addbanner() {
         title: newTitle,
         imageUrl: selectedImage,//URL.createObjectURL(selectedImage), // Display the selected image
         date: new Date().toLocaleDateString(),
+        link:newLink
       };
 
       let res = await BannerAdd(newBanner)
@@ -32,6 +34,7 @@ function addbanner() {
 
       if(res.flags){
           setNewTitle('');
+          setNewLink('');
           setSelectedImage(null);
       }else{
           alert("Error Please enter")
@@ -78,6 +81,23 @@ function addbanner() {
                   onChange={(e) => setNewTitle(e.target.value)}
                 />
               </div>
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="Title"
+                  className="text-base text-bgray-600 dark:text-bgray-50  font-medium"
+                >
+                Link
+                </label>
+                <input
+                  type="text"
+                  id="link"
+                  placeholder="link"
+                  name="link"
+                  className="bg-bgray-50 dark:bg-darkblack-500 dark:text-white p-4 rounded-lg h-14 border-0 focus:border focus:border-success-300 focus:ring-0"
+                  onChange={(e) => setNewLink(e.target.value)}
+                />
+              </div>
+
               <div className="flex flex-col gap-2">
                 <label
                   htmlFor="Platform"

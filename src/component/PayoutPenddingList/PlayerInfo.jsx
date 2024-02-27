@@ -114,13 +114,13 @@ function PlayerInfo({ id, name, email, mobileno, dateOfpayout, payoutamount, ban
         <div className="flex justify-center">
       
 
-          <button
+        {status == -1 ? <button
                 aria-label="none"
                 className="rounded-lg bg-success-300 text-white font-semibold mt-5 py-3.5 px-4"
                 onClick={ () => handleApprove(id) }
               >
                 Approve
-              </button>
+              </button> : ""}
 
         </div>
       </td>
@@ -128,13 +128,13 @@ function PlayerInfo({ id, name, email, mobileno, dateOfpayout, payoutamount, ban
         <div className="flex justify-center">
          
 
-          <button
+        {status == -1 ? <button
                 aria-label="none"
                 className="rounded-lg bg-red-300 text-white font-semibold mt-5 py-3.5 px-4"
                 onClick={ () => handlerejected(id) }
               >
               Rejected
-              </button>
+              </button> : "" }
 
         </div>
       </td>
